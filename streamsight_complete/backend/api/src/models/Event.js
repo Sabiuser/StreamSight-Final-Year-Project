@@ -1,4 +1,3 @@
-// backend/api/src/models/Event.js
 const mongoose = require("mongoose");
 const EventSchema = new mongoose.Schema({
   event_id: String,
@@ -12,7 +11,7 @@ const EventSchema = new mongoose.Schema({
   timestamp: { type: Date, index: true },
   device: String,
   country: String,
-  is_anomalous: Boolean
+  is_anomalous: Boolean,
 });
 EventSchema.index({ timestamp: 1 }, { expireAfterSeconds: 3600 });
 module.exports = mongoose.model("Event", EventSchema, "raw_events");
