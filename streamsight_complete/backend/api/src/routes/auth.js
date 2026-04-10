@@ -46,7 +46,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// POST /api/auth/login
+
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -59,7 +59,7 @@ router.post("/login", async (req, res) => {
     const valid = await user.comparePassword(password);
     if (!valid) return res.status(401).json({ error: "Invalid email or password" });
 
-    // Update lastLogin
+   
     user.lastLogin = new Date();
     await user.save();
 
@@ -76,7 +76,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// GET /api/auth/me  — protected
+
 router.get("/me", authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
@@ -87,7 +87,7 @@ router.get("/me", authMiddleware, async (req, res) => {
   }
 });
 
-// GET /api/auth/users — admin only
+
 router.get("/users", authMiddleware, async (req, res) => {
   try {
     if (req.user.role !== "admin")
