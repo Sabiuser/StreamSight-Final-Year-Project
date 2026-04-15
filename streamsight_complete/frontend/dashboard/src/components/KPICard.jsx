@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+
+=======
+>>>>>>> 12ee1d4e3b161b0cf4e9b3d0dab382e6cff50c09
 import { useEffect, useRef, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { PeopleAlt, TrendingUp, Undo, Speed } from "@mui/icons-material";
