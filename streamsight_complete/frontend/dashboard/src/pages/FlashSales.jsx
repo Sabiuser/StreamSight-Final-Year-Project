@@ -1,63 +1,4 @@
-// import { useState, useEffect } from "react";
-// import { Box, Typography, Grid, LinearProgress, Button, Chip } from "@mui/material";
-// import { Bolt, Timer, Share } from "@mui/icons-material";
-// import { motion } from "framer-motion";
 
-// const FLASH_ITEMS = [
-//   { id: 1, name: "Gaming Console Z", discount: "40% OFF", price: 299, original: 499, claimed: 85, img: "https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?w=400" },
-//   { id: 2, name: "Wireless Earbuds Pro", discount: "60% OFF", price: 49, original: 129, claimed: 40, img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400" },
-//   { id: 3, name: "Mechanical Keyboard", discount: "25% OFF", price: 89, original: 119, claimed: 15, img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=400" },
-// ];
-
-// export default function FlashSales() {
-//   return (
-//     <Box sx={{ p: 3, maxWidth: 1200, margin: "0 auto" }}>
-//       {/* Header with Urgency */}
-//       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 4, bgcolor: '#fef2f2', p: 2, borderRadius: 2, border: '1px solid #fee2e2' }}>
-//         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-//           <Bolt sx={{ color: '#ef4444' }} />
-//           <Typography variant="h5" sx={{ fontWeight: 800, color: '#1e293b' }}>Lightning Deals</Typography>
-//         </Box>
-//         <Typography sx={{ color: '#ef4444', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 1 }}>
-//           <Timer fontSize="small" /> ENDS IN 02h : 45m : 12s
-//         </Typography>
-//       </Box>
-
-//       <Grid container spacing={3}>
-//         {FLASH_ITEMS.map((item) => (
-//           <Grid item xs={12} sm={6} md={4} key={item.id}>
-//             <motion.div whileHover={{ y: -8 }} style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', border: '1px solid #e2e8f0' }}>
-//               <Box sx={{ position: 'relative' }}>
-//                 <img src={item.img} alt={item.name} style={{ width: '100%', height: 200, objectFit: 'cover' }} />
-//                 <Chip label={item.discount} sx={{ position: 'absolute', top: 12, left: 12, bgcolor: '#ef4444', color: 'white', fontWeight: 900, borderRadius: 1 }} />
-//               </Box>
-              
-//               <Box sx={{ p: 2 }}>
-//                 <Typography sx={{ fontWeight: 700, mb: 1, color: '#1e293b' }}>{item.name}</Typography>
-//                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-//                   <Typography variant="h6" sx={{ fontWeight: 800, color: '#b91c1c' }}>${item.price}</Typography>
-//                   <Typography sx={{ textDecoration: 'line-through', color: '#94a3b8', fontSize: '0.85rem' }}>${item.original}</Typography>
-//                 </Box>
-
-//                 {/* Claimed Progress Bar */}
-//                 <Box sx={{ mb: 2 }}>
-//                   <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
-//                     <Typography sx={{ fontSize: '0.75rem', fontWeight: 600, color: '#64748b' }}>{item.claimed}% claimed</Typography>
-//                   </Box>
-//                   <LinearProgress variant="determinate" value={item.claimed} sx={{ height: 6, borderRadius: 5, bgcolor: '#f1f5f9', '& .MuiLinearProgress-bar': { bgcolor: '#f59e0b' } }} />
-//                 </Box>
-
-//                 <Button fullWidth variant="contained" sx={{ bgcolor: '#fbbf24', color: '#000', fontWeight: 700, '&:hover': { bgcolor: '#f59e0b' }, boxShadow: 'none' }}>
-//                   Add to Cart
-//                 </Button>
-//               </Box>
-//             </motion.div>
-//           </Grid>
-//         ))}
-//       </Grid>
-//     </Box>
-//   );
-// }
 import { useState, useEffect } from "react";
 import { Box, Typography, Grid, LinearProgress, Button, Chip, Stack } from "@mui/material";
 import { Bolt, Timer, ShoppingCart, LocalFireDepartment } from "@mui/icons-material";
@@ -96,12 +37,12 @@ export default function FlashSales() {
 
   return (
     <Box sx={{ p: { xs: 2, md: 4 }, maxWidth: 1200, margin: "0 auto", bgcolor: '#f8fafc', minHeight: '100vh' }}>
-      
+
       {/* Enhanced Header */}
-      <Box sx={{ 
-        display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', 
+      <Box sx={{
+        display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between',
         mb: 4, bgcolor: '#fff', p: 3, borderRadius: 4, boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-        borderLeft: '6px solid #ef4444' 
+        borderLeft: '6px solid #ef4444'
       }}>
         <Stack direction="row" spacing={1} alignItems="center">
           <Bolt sx={{ color: '#ef4444', fontSize: 32 }} />
@@ -122,34 +63,34 @@ export default function FlashSales() {
       <Grid container spacing={4}>
         {FLASH_ITEMS.map((item) => (
           <Grid item xs={12} sm={6} md={4} key={item.id}>
-            <motion.div 
-              whileHover={{ y: -10 }} 
+            <motion.div
+              whileHover={{ y: -10 }}
               transition={{ type: "spring", stiffness: 300 }}
               style={{ background: 'white', borderRadius: 20, overflow: 'hidden', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)', border: '1px solid #f1f5f9' }}
             >
               <Box sx={{ position: 'relative', overflow: 'hidden' }}>
-                <motion.img 
-                   whileHover={{ scale: 1.05 }}
-                   src={item.img} 
-                   alt={item.name} 
-                   style={{ width: '100%', height: 240, objectFit: 'cover' }} 
+                <motion.img
+                  whileHover={{ scale: 1.05 }}
+                  src={item.img}
+                  alt={item.name}
+                  style={{ width: '100%', height: 240, objectFit: 'cover' }}
                 />
-                <Chip 
-                  label={item.discount} 
-                  sx={{ position: 'absolute', top: 16, left: 16, bgcolor: '#ef4444', color: 'white', fontWeight: 900, borderRadius: 1.5, px: 1 }} 
+                <Chip
+                  label={item.discount}
+                  sx={{ position: 'absolute', top: 16, left: 16, bgcolor: '#ef4444', color: 'white', fontWeight: 900, borderRadius: 1.5, px: 1 }}
                 />
                 {item.claimed > 80 && (
-                  <Chip 
+                  <Chip
                     icon={<LocalFireDepartment style={{ color: 'white', fontSize: 16 }} />}
-                    label="SELLING FAST" 
-                    sx={{ position: 'absolute', top: 16, right: 16, bgcolor: 'rgba(15, 23, 42, 0.8)', color: 'white', fontWeight: 700, backdropFilter: 'blur(4px)' }} 
+                    label="SELLING FAST"
+                    sx={{ position: 'absolute', top: 16, right: 16, bgcolor: 'rgba(15, 23, 42, 0.8)', color: 'white', fontWeight: 700, backdropFilter: 'blur(4px)' }}
                   />
                 )}
               </Box>
-              
+
               <Box sx={{ p: 3 }}>
                 <Typography variant="body1" sx={{ fontWeight: 700, mb: 1, color: '#1e293b', minHeight: '3rem' }}>{item.name}</Typography>
-                
+
                 <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1.5, mb: 3 }}>
                   <Typography variant="h4" sx={{ fontWeight: 900, color: '#ef4444' }}>${item.price}</Typography>
                   <Typography sx={{ textDecoration: 'line-through', color: '#94a3b8', fontSize: '1rem', fontWeight: 500 }}>${item.original}</Typography>
@@ -163,26 +104,26 @@ export default function FlashSales() {
                     </Typography>
                     <Typography sx={{ fontSize: '0.8rem', color: '#94a3b8' }}>{100 - item.claimed} left</Typography>
                   </Stack>
-                  <LinearProgress 
-                    variant="determinate" 
-                    value={item.claimed} 
-                    sx={{ 
-                      height: 10, borderRadius: 5, bgcolor: '#f1f5f9', 
-                      '& .MuiLinearProgress-bar': { 
+                  <LinearProgress
+                    variant="determinate"
+                    value={item.claimed}
+                    sx={{
+                      height: 10, borderRadius: 5, bgcolor: '#f1f5f9',
+                      '& .MuiLinearProgress-bar': {
                         bgcolor: getProgressColor(item.claimed),
                         borderRadius: 5
-                      } 
-                    }} 
+                      }
+                    }}
                   />
                 </Box>
 
-                <Button 
-                  fullWidth 
-                  variant="contained" 
+                <Button
+                  fullWidth
+                  variant="contained"
                   startIcon={<ShoppingCart />}
-                  sx={{ 
+                  sx={{
                     py: 1.5, borderRadius: 3, bgcolor: '#0f172a', color: '#fff', fontWeight: 800, textTransform: 'none', fontSize: '1rem',
-                    '&:hover': { bgcolor: '#334155' }, boxShadow: '0 4px 14px 0 rgba(15, 23, 42, 0.3)' 
+                    '&:hover': { bgcolor: '#334155' }, boxShadow: '0 4px 14px 0 rgba(15, 23, 42, 0.3)'
                   }}
                 >
                   Claim This Deal
