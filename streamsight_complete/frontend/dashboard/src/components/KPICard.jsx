@@ -212,7 +212,7 @@ export default function KPICard({
                   fontFamily: "'JetBrains Mono', monospace",
                 }}
               >
-                STABLE
+            
               </Typography>
             )}
           </Box>

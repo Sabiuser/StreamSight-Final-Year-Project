@@ -21,12 +21,13 @@ import { useSocket } from "./hooks/useSocket";
 import { CartProvider } from "./context/CartContext";
 import FlashSales from "./pages/FlashSales";
 import Orders from "./pages/Orders";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const ROLE_ACCESS = {
   admin: ["/", "/analytics", "/user-activity"],
   analyst: ["/", "/analytics"],
   viewer: ["/", "/analytics"],
-  customer: ["/ecommerce", "/flash-sales", "/orders", "/payment"],
+  customer: ["/ecommerce", "/flash-sales", "/orders", "/payment","/checkout"],
 };
 
 function PrivateRoute() {
@@ -64,6 +65,7 @@ function PrivateRoute() {
           <Route path="/flash-sales" element={<FlashSales tab="flash" />} />
           <Route path="/orders" element={<Orders tab="orders" />} />
           <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
 
           {/* Catch-all */}
           <Route

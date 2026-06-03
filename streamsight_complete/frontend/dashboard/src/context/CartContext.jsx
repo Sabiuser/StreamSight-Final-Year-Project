@@ -1,3 +1,5 @@
+
+
 import { createContext, useContext, useState, useCallback } from "react";
 
 const CartContext = createContext(null);
@@ -8,7 +10,8 @@ export function CartProvider({ children }) {
   const addToCart = useCallback((product) => {
     setCartItems(prev => {
       const existing = prev.find(i => i.id === product.id);
-      if (existing) return prev.map(i => i.id === product.id ? { ...i, qty: i.qty + 1 } : i);
+      if (existing)
+        return prev.map(i => i.id === product.id ? { ...i, qty: i.qty + 1 } : i);
       return [...prev, { ...product, qty: 1 }];
     });
   }, []);
@@ -17,13 +20,28 @@ export function CartProvider({ children }) {
     setCartItems(prev => prev.filter(i => i.id !== productId));
   }, []);
 
+  // ── FIX: was missing entirely — CheckoutPage calls this for +/- qty buttons
+  const updateQty = useCallback((productId, newQty) => {
+    setCartItems(prev =>
+      prev.map(i => i.id === productId ? { ...i, qty: Math.max(1, newQty) } : i)
+    );
+  }, []);
+
   const clearCart = useCallback(() => setCartItems([]), []);
 
   const totalItems = cartItems.reduce((s, i) => s + i.qty, 0);
   const totalPrice = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, totalItems, totalPrice }}>
+    <CartContext.Provider value={{
+      cartItems,
+      addToCart,
+      removeFromCart,
+      updateQty,   // ← now exposed
+      clearCart,
+      totalItems,
+      totalPrice,
+    }}>
       {children}
     </CartContext.Provider>
   );
